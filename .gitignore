@@ -1,2 +1,3 @@
 suno-api/
 node_modules/
+*.env
