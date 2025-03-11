@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Tunes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-[#292929] min-h-screen overflow-x-hidden">
+    <!-- Geometric Background Elements -->
+    <div class="fixed inset-0 overflow-hidden z-0">
+        <div class="absolute -right-1/4 -top-1/4 w-[150%] h-[150%] bg-gradient-to-br from-[#F6A723]/20 to-[#F69423]/10 transform rotate-45 origin-top-left"></div>
+        <div class="absolute top-0 left-0 w-48 h-48 clip-path-triangle bg-[#F6A723]/60 animate-float"></div>
+        <div class="absolute top-1/3 right-0 w-32 h-32 clip-path-triangle bg-[#F69423]/75 animate-float"></div>
+        <div class="absolute bottom-0 left-1/4 w-64 h-64 clip-path-triangle bg-[#F6A723]/60 animate-float"></div>
+    </div>
+
+    <header class="relative z-10 w-full py-6 px-8 flex items-center text-center justify-center">
+        <h1 class="text-4xl font-bold drop-shadow-lg text-white">
+            <span class="text-[#F6A723]">Tech</span> Tunes
+        </h1>
+    </header>
+
+    <main class="relative z-10 container mx-auto px-4 py-8">
+        <form id="music-form" class="max-w-2xl mx-auto backdrop-blur-lg bg-[#292929]/70 rounded-3xl p-8 shadow-2xl">
+            <div class="mb-8 space-y-4">
+                <input 
+                    type="text" 
+                    id="theme-input"
+                    placeholder="Enter your theme..." 
+                    class="w-full px-6 py-4 rounded-lg bg-white/10 border border-[#F69423]/30 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#F6A723] transition-all"
+                >
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-white/80 block mb-2">Genre</label>
+                        <select id="genre-select" 
+                            class="w-full px-4 py-2 rounded-lg bg-[#1E1E1E] border border-[#F69423]/50 text-white focus:ring-2 focus:ring-[#F69423]">
+                            <option class="bg-[#1E1E1E] text-white hover:bg-[#F69423]" value="electronic">Electronic</option>
+                            <option class="bg-[#1E1E1E] text-white hover:bg-[#F69423]" value="rock">Rock</option>
+                            <option class="bg-[#1E1E1E] text-white hover:bg-[#F69423]" value="classical">Classical</option>
+                            <option class="bg-[#1E1E1E] text-white hover:bg-[#F69423]" value="jazz">Jazz</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-white/80 block mb-2">Duration (seconds)</label>
+                        <input 
+                            type="number" 
+                            id="duration-input"
+                            value="120"
+                            class="w-full px-4 py-2 rounded-lg bg-white/10 border border-[#F69423]/30 text-white"
+                        >
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <input 
+                        type="checkbox" 
+                        id="instrumental"
+                        class="accent-[#F6A723]"
+                    >
+                    <label class="text-white/80">Instrumental</label>
+                </div>
+
+                <button 
+                    id="generate-btn"
+                    type="submit"
+                    class="w-full bg-gradient-to-r from-[#F6A723] to-[#F69423] text-white px-8 py-3 rounded-lg hover:opacity-90 transition-opacity font-bold tracking-wide transform hover:scale-[1.01] disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                    Generate Music
+                </button>
+            </div>
+
+            <div class="bg-white/10 p-6 rounded-xl border border-[#F69423]/20">
+                <div class="min-h-48" id="visualizer">
+                    <div class="text-white/50 text-center py-8">
+                        Your generated music will appear here...
+                    </div>
+                </div>
+            </div>
+        </form>
+    </main>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>
