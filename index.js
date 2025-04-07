@@ -13,13 +13,17 @@ app.use(express.json({ limit: '50mb' }));
 app.get('/', (req, res) => res.render('index'));
 
 app.post('/generate-music', (req, res) => {
+  const { prompt, audio } = req.body;
+
+  if (!prompt) {
+    return res.status(400).json({ error: 'Prompt is required' });
+  }
+
   const audioPath = path.join(__dirname, 'public', 'dummy.mp3');
   const audioBuffer = fs.readFileSync(audioPath);
   const base64Audio = audioBuffer.toString('base64');
 
-  res.json({
-    audio: base64Audio
-  });
+  res.json({ audio: base64Audio });
 });
 
 app.post('/upload-music', (req, res) => {
@@ -38,6 +42,6 @@ app.post('/upload-music', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log('Server running at : http://localhost:3000/');
+  console.log(`Server running at: http://localhost:${port}/`);
   console.log("Ctrl+C to exit");
 });

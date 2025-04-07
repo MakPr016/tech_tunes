@@ -7,34 +7,49 @@
   <title>Tech Tunes</title>
   <link rel="stylesheet" href="/css/styles.css" />
   <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    #visualizer-text audio {
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
 </head>
 
-<body class="bg-[#292929] min-h-screen overflow-x-hidden">
+<body class="bg-[#292929] min-h-screen overflow-x-hidden font-[Poppins]">
+  <!-- Gradient & Floating Shapes -->
   <div class="fixed inset-0 overflow-hidden z-0">
     <div class="absolute -right-1/4 -top-1/4 w-[150%] h-[150%] bg-gradient-to-br from-[#F6A723]/20 to-[#F69423]/10 transform rotate-45 origin-top-left"></div>
     <div class="absolute top-0 left-0 w-48 h-48 clip-path-triangle bg-[#F6A723]/60 animate-float"></div>
-    <div class="absolute top-1/3 right-0 w-32 h-32 clip-path-triangle bg-[#F69423]/75 animate-float"></div>
+    <div class="absolute top-1/3 right-0 w-32 h-32 clip-path-triangle bg-[#F69423]/75 animate-float-delayed"></div>
     <div class="absolute bottom-0 left-1/4 w-64 h-64 clip-path-triangle bg-[#F6A723]/60 animate-float"></div>
   </div>
 
+  <!-- Header -->
   <header class="relative z-10 w-full py-6 px-8 flex items-center text-center justify-center">
     <h1 class="text-4xl font-bold drop-shadow-lg text-white">
       <span class="text-[#F6A723]">Tech</span> Tunes
     </h1>
   </header>
 
+  <!-- Main Content -->
   <main class="relative z-10 container mx-auto px-4 py-8">
     <form id="music-form" class="max-w-2xl mx-auto backdrop-blur-lg bg-[#292929]/70 rounded-3xl p-8 shadow-2xl">
-      <div class="mb-8 space-y-4">
-        <label class="text-white/80 block">Enter Prompt</label>
-        <input type="text" id="prompt-input" placeholder="Enter your theme..."
-          class="w-full px-6 py-2 rounded-lg bg-white/10 border border-[#F69423]/30 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#F6A723] transition-all" />
-
+      <div class="mb-8 space-y-6">
         <div>
-          <label class="text-white/80 block mb-2">Upload Video</label>
-          <label for="video-upload" class="custom-file-upload">Choose Video</label>
-          <input type="file" id="video-upload" accept="video/*" />
-          <video id="video-preview" controls class="w-full mt-4 rounded-lg hidden"></video>
+          <label class="text-white/80 block mb-2">Enter Prompt</label>
+          <input type="text" id="prompt-input" placeholder="Enter your theme..."
+            class="w-full px-6 py-2 rounded-lg bg-white/10 border border-[#F69423]/30 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#F6A723] transition-all" />
         </div>
 
         <div>
@@ -44,23 +59,21 @@
           <audio id="audio-preview" controls class="w-full mt-4 hidden"></audio>
         </div>
 
-        <div class="flex items-center gap-2">
-          <input type="checkbox" id="instrumental" class="accent-[#F6A723]" />
-          <label class="text-white/80">Instrumental</label>
-        </div>
-
         <button id="generate-btn" type="button"
-          class="w-full bg-gradient-to-r from-[#F6A723] to-[#F69423] text-white px-8 py-3 rounded-lg hover:opacity-90 transition-opacity font-bold tracking-wide transform hover:scale-[1.01] disabled:opacity-50 disabled:cursor-not-allowed">
+          class="w-full mt-4 mb-4 bg-gradient-to-r from-[#F6A723] to-[#F69423] text-white px-8 py-3 rounded-lg hover:opacity-90 transition-opacity font-bold tracking-wide transform hover:scale-[1.01] disabled:opacity-50 disabled:cursor-not-allowed">
           Generate Music
         </button>
       </div>
 
-      <div class="bg-white/10 p-6 rounded-xl border border-[#F69423]/20">
-        <div class="min-h-48" id="visualizer">
+      <!-- Output Section -->
+      <div class="bg-[#1f1f1f]/80 p-6 rounded-2xl border border-[#F69423]/30 shadow-xl">
+        <h2 class="text-lg font-semibold text-[#F6A723] mb-4 text-center">Music Preview</h2>
+        <div id="visualizer">
           <div id="loading-bar" class="w-full h-2 bg-white/10 rounded-full overflow-hidden mb-4 hidden">
             <div class="h-full bg-gradient-to-r from-[#F6A723] to-[#F69423] animate-pulse w-1/2 rounded-full"></div>
           </div>
-          <div class="text-white/50 text-center py-8" id="visualizer-text">
+          <div id="visualizer-text"
+            class="text-white/60 text-center min-h-[6rem] flex items-center justify-center transition-all duration-300 ease-in-out">
             Your generated music will appear here...
           </div>
         </div>
